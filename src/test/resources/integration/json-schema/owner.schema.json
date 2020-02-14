@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Owner",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 10,
+      "description": "The owners's name."
+    }
+  }
+}
