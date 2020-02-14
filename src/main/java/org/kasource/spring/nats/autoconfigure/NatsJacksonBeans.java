@@ -9,11 +9,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.kasource.spring.nats.message.serde.NatsMessageSerDeFactory;
 import org.kasource.spring.nats.message.serde.json.NatsJacksonMessageSerDeFactory;
 import org.kasource.spring.nats.message.validation.JsonSchemaValidator;
 import org.kasource.spring.nats.message.validation.MessageObjectValidator;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @ConditionalOnProperty(prefix = "spring.nats", name = "ser-de-type", havingValue = "JACKSON", matchIfMissing = true)
 @ConditionalOnClass(ObjectMapper.class)
