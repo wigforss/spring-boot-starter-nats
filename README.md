@@ -101,7 +101,20 @@ import io.nats.client.Message;
     }
  ...
 ```
-
+By registering a **java.util.function.BiConsumer<?, Message>** both the payload and the message can be received.
+```
+import org.kasource.spring.nats.consumer.NatsConsumerManager;
+import io.nats.client.Message;
+...
+    @Autowired
+    private NatsConsumerManager manager;
+        
+    @PostConstruct
+    void setup() {
+        manager.register((p, m) -> System.out.println(String.format("Message '%s' payload '%s'", m, p)), MyObject.class, "a-subject");
+    }
+ ...
+```
 ## SerDe (Serialization / Deserialization)
 NatsTemplate will serialize objects and the Consumers will deserialize objects automatically. Jackson will automatically be used for SerDe if its on the classpath.
 
@@ -299,7 +312,7 @@ The following ApplicationEvents are published:
 
 * NatsConnectionEvent - When connection state changes
 * NatsErrorEvent - On errors 
-* NatsExceptionEvent - On Exceptions ()in dispatcher when consuming messages).
+* NatsExceptionEvent - On Exceptions (in dispatcher when consuming messages).
 * NatsSlowConsumerEvent - When a slow consumer is detected
 
 ## Configuration
